@@ -1,0 +1,4 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+parqueadero,co.com.ceiba.parqueadero.rest,AutomovilDTO,21,15,0,0,8,7,4,4,4,4
+parqueadero,co.com.ceiba.parqueadero.rest,AutomovilDAO,12,136,0,4,4,31,0,5,0,3
+parqueadero,co.com.ceiba.parqueadero.rest,ParqueaderoWS,24,0,0,0,7,0,4,0,4,0

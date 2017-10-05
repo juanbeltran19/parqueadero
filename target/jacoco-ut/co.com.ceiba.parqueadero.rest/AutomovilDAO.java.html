@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AutomovilDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">parqueadero</a> &gt; <a href="index.source.html" class="el_package">co.com.ceiba.parqueadero.rest</a> &gt; <span class="el_source">AutomovilDAO.java</span></div><h1>AutomovilDAO.java</h1><pre class="source lang-java linenums">package co.com.ceiba.parqueadero.rest;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.management.RuntimeErrorException;
+import co.com.ceiba.parqueadero.rest.AutomovilDTO;
+
+<span class="fc" id="L13">public class AutomovilDAO {</span>
+	
+	private Connection conexion;
+	private Statement sentencia; 
+	private ResultSet resultado;
+	
+	public List&lt;AutomovilDTO&gt; getAutomoviles() {
+		try {
+<span class="fc" id="L21">			Class.forName(&quot;com.mysql.jdbc.Driver&quot;).newInstance();</span>
+<span class="fc" id="L22">		 	String url= &quot;jdbc:mysql://localhost/bd_parqueadero&quot;; </span>
+<span class="fc" id="L23">		    conexion=DriverManager.getConnection(url,&quot;root&quot;, &quot;admin&quot;);		</span>
+<span class="fc" id="L24">		    sentencia=conexion.createStatement();</span>
+<span class="fc" id="L25">			String sql = &quot;select placa, tipo, fechaingreso from automiviles&quot;;</span>
+<span class="fc" id="L26">			resultado = sentencia.executeQuery(sql);</span>
+<span class="fc" id="L27">			List&lt;AutomovilDTO&gt; lista = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">			while(resultado.next()) {</span>
+<span class="fc" id="L29">				AutomovilDTO dto = new AutomovilDTO();</span>
+<span class="fc" id="L30">				dto.setPlaca( resultado.getString(&quot;placa&quot;) );</span>
+<span class="fc" id="L31">				dto.setTipo( resultado.getString(&quot;tipo&quot;) );</span>
+<span class="fc" id="L32">				dto.setFechaIngreso( resultado.getString(&quot;fechaingreso&quot;) );</span>
+<span class="fc" id="L33">				lista.add(dto);</span>
+<span class="fc" id="L34">			}</span>
+<span class="fc" id="L35">			return lista;</span>
+<span class="nc" id="L36">		}catch(Exception ex) {</span>
+<span class="nc" id="L37">			throw new RuntimeException(ex); </span>
+		}
+	}
+	
+	public List&lt;AutomovilDTO&gt; getAutomovil(String placa) {
+		try {
+<span class="fc" id="L43">			Class.forName(&quot;com.mysql.jdbc.Driver&quot;).newInstance();</span>
+<span class="fc" id="L44">		 	String url= &quot;jdbc:mysql://localhost/bd_parqueadero&quot;; </span>
+<span class="fc" id="L45">		    conexion=DriverManager.getConnection(url,&quot;root&quot;, &quot;admin&quot;);		</span>
+<span class="fc" id="L46">		    sentencia=conexion.createStatement();</span>
+<span class="fc" id="L47">			String sql = &quot;select placa, tipo, fechaingreso from automiviles where placa='&quot;+placa+&quot;'&quot;;</span>
+<span class="fc" id="L48">			resultado = sentencia.executeQuery(sql);</span>
+<span class="fc" id="L49">			List&lt;AutomovilDTO&gt; lista = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">			while(resultado.next()) {</span>
+<span class="fc" id="L51">				AutomovilDTO dto = new AutomovilDTO();</span>
+<span class="fc" id="L52">				dto.setPlaca( resultado.getString(&quot;placa&quot;) );</span>
+<span class="fc" id="L53">				dto.setTipo( resultado.getString(&quot;tipo&quot;) );</span>
+<span class="fc" id="L54">				dto.setFechaIngreso( resultado.getString(&quot;fechaingreso&quot;) );</span>
+<span class="fc" id="L55">				lista.add(dto);</span>
+<span class="fc" id="L56">			}</span>
+<span class="fc" id="L57">			return lista;</span>
+<span class="nc" id="L58">		}catch(Exception ex) {</span>
+<span class="nc" id="L59">			throw new RuntimeException(ex); </span>
+		}
+	}	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
